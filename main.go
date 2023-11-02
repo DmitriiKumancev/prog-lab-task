@@ -59,15 +59,18 @@ func generateExpression() string {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano()) 
-	expression := generateExpression()
-	result := calculate(expression)
+	rand.Seed(time.Now().UnixNano())
 
-	for result != 200 {
-		expression = generateExpression()
-		result = calculate(expression)
+	numSolutions := 5 // Желаемое количество вариантов
+
+	for solutionCount := 0; solutionCount < numSolutions; {
+		expression := generateExpression()
+		result := calculate(expression)
+
+		if result == 200 {
+			fmt.Println("Выражение:", expression)
+			fmt.Println("Результат:", result)
+			solutionCount++
+		}
 	}
-
-	fmt.Println("Выражение:", expression)
-	fmt.Println("Результат:", result)
 }
